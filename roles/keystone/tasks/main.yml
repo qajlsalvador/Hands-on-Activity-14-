@@ -1,0 +1,16 @@
+---
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - keystone
+    - python3-openstackclient
+    - apache2
+
+- name: restart keystone
+  service:
+    name: apache2
+    state: restarted
+    enabled: yes
+  become: true

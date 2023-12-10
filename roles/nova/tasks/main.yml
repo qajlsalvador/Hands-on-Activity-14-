@@ -1,0 +1,19 @@
+---
+
+- name: install nova
+  apt:
+    name:
+      - nova-compute
+      - nova-scheduler
+      - nova-api
+      - nova-conductor
+      - nova-novncproxy
+      - python3-openstackclient
+    state: present
+
+- name: restart nova
+  systemd:
+    name: nova-compute
+    state: restarted
+    enabled: yes
+  become: true

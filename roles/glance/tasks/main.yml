@@ -1,0 +1,16 @@
+---
+
+- name: install glance
+  apt:
+    name:
+      - glance
+      - python3-openstackclient
+    state: present
+
+- name: restart glance
+  service:
+    name: glance-api
+    state: restarted
+    enabled: yes
+  become: true
+
